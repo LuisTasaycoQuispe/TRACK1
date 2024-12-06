@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-luis-tasayco-deployment
+  namespace: luis-tasayco-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-luis-tasayco-deployment
+  template:
+    metadata:
+      labels:
+        app: frontend-luis-tasayco-deployment
+    spec:
+      containers:
+      - name: frontend-luis-tasayco-deployment
+        image: luistasayco2004/monitoreo_angular_web:lastest
+        env:
+        - name: API_BACKEND
+          valueFrom:
+            configMapKeyRef:
+              name: luis-tasayco-configmap
+              key: API_BACKEND

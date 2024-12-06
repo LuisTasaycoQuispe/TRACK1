@@ -1,0 +1,11 @@
+#kubectl apply -f configmap.yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: luis-tasayco-configmap
+  namespace: luis-tasayco-namespace
+data:
+  DATABASE_URL: "r2dbc:pool:postgresql://ep-patient-glade-a500n7jv.us-east-2.aws.neon.tech/neondb?sslmode=require"
+  DATABASE_USERNAME: "neondb_owner"
+  DATABASE_PASSWORD: "E7ZoFl2PrvjX"
+  API_BACKEND: "https://fluffy-bassoon-jx54jvjxx5wc5p47-8080.app.github.dev/"

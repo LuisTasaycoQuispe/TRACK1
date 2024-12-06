@@ -1,0 +1,35 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-luis-tasayco-deployment
+  namespace: luis-tasayco-namespace
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend-luis-tasayco-deployment
+  template:
+    metadata:
+      labels:
+        app: backend-luis-tasayco-deployment
+    spec:
+      containers:
+      - name: backend-luis-tasayco-deployment
+        image: luistasayco2004/spring-boot-monitoreo_prs:lastet
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: luis-tasayco-configmap
+              key: DATABASE_URL
+        - name: DATABASE_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: luis-tasayco-configmap
+              key: DATABASE_USERNAME
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: luis-tasayco-configmap
+              key: DATABASE_PASSWORD
